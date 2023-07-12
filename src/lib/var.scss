@@ -1,0 +1,9 @@
+$colorMap: (
+  light: #ddd,
+);
+
+// подключим функцию, которая принимает ключ и возвращаетчерез map-get цвет
+
+@function color($key) {
+  @return map-get($colorMap, $key);
+}
