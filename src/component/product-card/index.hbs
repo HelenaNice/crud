@@ -1,0 +1,15 @@
+<div class="product-card">
+    <h3 class="card-title">{{this.name}}</h3>
+    <p class="card-text">{{this.description}}</p>
+    <p class="card-id">ID: {{this.id}}</p>
+    <div class="row">
+        <div class="col-6">
+            <div class="price">{{this.price}} ₴</div>
+        </div>
+        <div class="col-6 d-flex justify-content-end">
+            {{!-- <a href="/product-edit?id={{this.id}}" class="edit-link">Редагувати</a>
+             --}}
+            <a href="/product-edit/{{this.id}}" class="edit-link text-end">Редагувати</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,74 @@
+main {
+  margin: 50px;
+}
+
+section {
+  margin-bottom: 100px;
+}
+
+h1 {
+  color: blue;
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.product-edit {
+  width: 100%;
+  padding: 16px;
+  gap: 32px;
+  border: 1px solid rgb(231, 228, 228);
+  border-radius: 10px;
+  box-shadow: 0 0 10px gray;
+  padding: 20px;
+}
+
+.card-title {
+  font-size: 24px;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+}
+
+input[type=text],
+textarea {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.update-button,
+.delete-button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 20px;
+  text-align: center;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.update-button {
+  background-color: blue;
+  color: white;
+}
+
+.delete-button {
+  background-color: red;
+  color: white;
+}
+
+.link {
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+/*# sourceMappingURL=style.css.map */

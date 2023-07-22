@@ -48,7 +48,12 @@ if (process.env.NODE_ENV === 'development') {
   app.use(connectLiveReload())
 }
 
-const route = require('./src/route/index.js')
+// const route = require('./src/route/index.js')
+//*** */ new
+const route = require('./src/route/index_product')
+
+app.use('/product', route) // Используем маршрутизатор для продуктов
+// *************
 
 app.use('/', route)
 // catch 404 and forward to error handler

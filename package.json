@@ -8,7 +8,12 @@
     "watch": "webpack --watch",
     "sass:build": "sass sсss:public/css",
     "sass:watch": "sass --watch src:public/dist/css",
-    "dev": "run-p sass:watch client"
+    "product": "node ./route/index_product.js",
+    "user": "node ./route/index_user.js",
+    "all": "run-p product user dev",
+    "dev": "run-p sass:watch client",
+    "compile-scss": "node-sass style.scss style.css",
+    "dev-server": "run-p sass:watch start"
   },
   "dependencies": {
     "@babel/core": "^7.21.0",
@@ -38,5 +43,8 @@
     "style-loader": "^3.3.1",
     "webpack": "^5.73.0",
     "webpack-cli": "^4.9.2"
+  },
+  "devDependencies": {
+    "node-sass": "^9.0.0"
   }
 }
