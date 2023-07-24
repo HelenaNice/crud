@@ -128,17 +128,23 @@ router.post('/product-edit/:id', (req, res) => {
 
 // GET ендпоїнт для видалення товару
 router.get('/product-delete', (req, res) => {
-  const productId = req.query.id // Отримати параметр id з запиту
+  // ***от Анни***
+  const { id } = req.query
+  Product.deleteById(Number(id))
 
-  if (!productId) {
-    // Перевірка, чи передано id
-    return res
-      .status(400)
-      .json({ error: 'Missing id parameter' })
-  }
+  const success = Product.deleteById(Number(id))
+  // ******
+  // const productId = req.query.id // Отримати параметр id з запиту
 
-  // Видалення товару
-  const success = Product.deleteById(productId)
+  // if (!productId) {
+  //   // Перевірка, чи передано id
+  //   return res
+  //     .status(400)
+  //     .json({ error: 'Missing id parameter' })
+  // }
+
+  // // Видалення товару
+  // const success = Product.deleteById(productId)
 
   if (success) {
     // Отримати оновлений список товарів після видалення
