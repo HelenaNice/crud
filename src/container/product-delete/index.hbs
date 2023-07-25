@@ -1,0 +1,126 @@
+{{! 
+Це код container файлу для index сторінки, 
+в якому міститься код, котрий буде віддаватися по шляху (PATH) - "/"
+ }}
+<style>
+	main {
+		margin: 50px;
+	}
+
+	section {
+		margin-bottom: 100px;
+	}
+
+	h1 {
+		color: blue;
+		font-size: 30px;
+		font-weight: 700;
+		margin-bottom: 20px;
+	}
+
+	.product-edit {
+		width: 100%;
+		padding: s.space(4);
+		gap: s.space(8);
+		border: 1px solid rgb(231, 228, 228);
+		border-radius: 10px;
+		box-shadow: 0 0 10px gray;
+		padding: 20px;
+	}
+
+	.card-title {
+		font-size: 24px;
+		font-weight: 800;
+		margin-bottom: 20px;
+	}
+
+	label {
+		font-weight: bold;
+	}
+
+	input[type='text'],
+	textarea {
+		width: 100%;
+		padding: 5px;
+		border: 1px solid gray;
+		border-radius: 5px;
+		margin-bottom: 10px;
+	}
+
+	.update-button,
+	.delete-button {
+		display: block;
+		width: 100%;
+		padding: 10px;
+		margin-top: 20px;
+		text-align: center;
+		border: none;
+		border-radius: 5px;
+		cursor: pointer;
+	}
+
+	.update-button {
+		background-color: blue;
+		color: white;
+	}
+
+	.delete-button {
+		background-color: red;
+		color: white;
+	}
+
+	.link,
+	.delete-link {
+		color: white;
+		text-align: center;
+		text-decoration: none;
+		font-size: 20px;
+	}
+</style>
+<main class="main">
+	<h1 class="card-title">Выдалити товар?</h1>
+	<form method="DELETE" action="/product-delete/{{product.id}}">
+		<div class="product-edit">
+			<h2 class="card-title">Інформація про товар</h2>
+			<div class="row">
+				<div class="col-md-6">
+					<label for="name">Назва товару:</label>
+					<input type="text" id="name" name="name" value="{{product.name}}" required>
+				</div>
+				<div class="col-md-3">
+					<label for="price">Ціна:</label>
+					<input type="text" id="price" name="price" value="{{product.price}}" required>
+				</div>
+				<div class="col-md-3">
+					<label for="id">ID товару:</label>
+					<input type="text" id="id" name="id" value="{{product.id}}" readonly>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<label for="description">Короткий опис товару:</label>
+					<textarea id="description" name="description" required>{{product.description}}</textarea>
+					<p class="description-note">Відображається у картці товару</p>
+				</div>
+			</div>
+
+			<div class="col-md-12">
+				<a href="/product-delete/{{product.id}}" class="delete-link">
+					Видалити
+				</a>
+			</div>
+		</div>
+
+		</div>
+	</form>
+
+	{{!-- <link rel="stylesheet" href="/container/product-edit/style.css"> --}}
+
+
+</main>
+
+
+{{! 
+    Цей код містить лише те, що буде виводитись в <body>
+    Адже наш layout/default.hbs має вже структуру HTML
+}}
