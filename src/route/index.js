@@ -132,6 +132,8 @@ class Purchase {
 
   constructor(data, product) {
     this.id = ++Purchase.#count
+    // Добавляем поле title при создании объекта Purchase
+    this.title = product.title // Присваиваем полю title значение из объекта product
 
     this.firstname = data.firstname
     this.lastname = data.lastname
@@ -149,6 +151,10 @@ class Purchase {
     this.productPrice = data.productPrice
     this.deliveryPrice = data.deliveryPrice
     this.amount = data.amount
+
+    // Рассчитываем значение бонусов (10% от общей цены)
+    this.bonusAmount =
+      this.totalPrice * Purchase.#BONUS_FACTOR
 
     this.product = product
   }
@@ -439,7 +445,15 @@ router.post('/purchase-submit', function (req, res) {
     },
   })
 })
-// ================================================================
+// ===== GET =====
+router.get('/purchase-list', function (req, res) {
+  res.render('purchase-list', {
+    style: 'purchase-list', // Здесь вы можете указать стили, если требуется
+    data: {
+      list: Purchase.getList(), // Замените Purchase на ваш класс с заказами
+    },
+  })
+})
 
 // ================================================================
 
