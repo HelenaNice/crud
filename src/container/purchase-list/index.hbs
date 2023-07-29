@@ -1,0 +1,25 @@
+{{! purchase-list.hbs }}
+
+<main class="main">
+  {{> heading title="Мої замовлення"}}
+
+  <div class="purchase-list">
+    {{#each data.list}}
+    <div class="purchase-item">
+      <div class="purchase-item__id">ID: {{id}}</div>
+      <div class="purchase-item__title">
+        <div class="purchase-item__label">Товари:</div>
+        <div class="purchase-item__value">{{title}}</div>
+      </div>
+      <div class="purchase-item__total-price">
+        <div class="purchase-item__label">Сума замовлення:</div>
+        <div class="purchase-item__value">{{totalPrice}} грн</div>
+      </div>
+      <div class="purchase-item__bonus">
+        <div class="purchase-item__label">Нараховані бонуси:</div>
+        <div class="purchase-item__value">{{bonus}} грн</div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+</main>

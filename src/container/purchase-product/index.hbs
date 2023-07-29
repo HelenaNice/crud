@@ -7,7 +7,7 @@
   {{> heading title="Інформація про товар"}}
   {{!-- отримати дані . Форма відправляє пост запит, та передае query id--}}
   {{#with data.product}}
-  <form metod="POST" action"/purchase-create?id={{id}}">
+  <form method="POST" action="/purchase-create?id={{id}}">
     <div class="product-info">
 
       <img src="{{img}}" alt="{{title}}" class="product-info__image">
@@ -15,7 +15,6 @@
       <p class="product-info__subtitle">{{description}}</p>
 
       {{> divider}}
-      <hr>
 
       {{#each category}}
       <span class="product-info__category product-info__category--{{id}}">{{text}}</span>
@@ -25,14 +24,14 @@
 
       {{> field label="Кількість" type="number" name="amount" value="1"}}
       {{!-- button - is submit(default) - відправляє нашу форму --}}
-      <button class="product-info__button">Купити зараз: {{price}} грн</button>
+      {{> button text="Купити зараз" price=price}}
 
       {{!-- <button href="/purchase-product?id={{id}}" class="product-info__button">Купити зараз</button> --}}
     </div>
   </form>
   {{/with}}
 
-  {{> heading title="Іншi товари"}}
+  {{> heading title="Іншi товари" info="Комп'ютери та ноутбуки"}}
   <div class="product-list">
     {{#each data.list}}
     {{> purchase-product data=this}}
