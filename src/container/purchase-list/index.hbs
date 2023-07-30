@@ -10,7 +10,6 @@
       <div class="purchase-item__title">
         <div class="purchase-item__label">Товари:</div>
         <div class="purchase-item__value">{{#if title}}{{title}}{{else}}Назва не вказана{{/if}}</div>
-        {{!-- <div class="purchase-item__value">{{title}}</div> --}}
       </div>
       <div class="purchase-item__total-price">
         <div class="purchase-item__label">Сума замовлення:</div>
@@ -23,9 +22,14 @@
 
     </div>
     {{> divider}}
-    {{/each}}
+
 
   </div>
 
   {{!-- **** --}}
+  <br>
+  <a href="/purchase-delivery?id={{id}}">
+    {{> button text="Перейти до оформлення замовлення"}}
+  </a>
+  {{/each}}
 </main>

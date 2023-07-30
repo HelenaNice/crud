@@ -1,0 +1,78 @@
+{{! purchase-delivery.hbs }}
+
+<main class="main">
+
+  <div class="delivery_card">
+    {{> heading title="Інформація про замовлення"}}
+    {{#with data}}
+    <div class="block">
+      <div>
+        <div class="block__label">ID замовленя:</div>
+        <div class="block__info">{{id}}</div>
+      </div>
+    </div>
+    {{> divider}}
+
+    <div class="block_customer">
+      <div>
+        <div class="block__label">Прізвище:</div>
+        <div class="block__info">{{lastname}}</div>
+      </div>
+      <div>
+        <div class="block__label">Ім'я:</div>
+        <div class="block__info">{{firstname}}</div>
+      </div>
+    </div>
+    <div class="block_customer">
+      <div>
+        <div class="block__label">Телефон:</div>
+        <div class="block__info">{{phone}}</div>
+      </div>
+      <div>
+        <div class="block__label">Електронна пошта:</div>
+        <div class="block__info">{{email}}</div>
+      </div>
+    </div>
+    {{> divider}}
+    <div class="block">
+      <div>
+        <div class="block__label">Адреса доставки:</div>
+        <div class="block__info">{{address}}</div>
+      </div>
+      <div>
+        <div class="block__label">Назва товару:</div>
+        <div class="block__info">{{title}}</div>
+      </div>
+    </div>
+    {{> divider}}
+    <div class="block_purchase">
+      <div>
+        <div class="block__label">Вартість товарів:</div>
+        <div class="block__info">{{productPrice}} грн</div>
+      </div>
+
+      <div>
+        <div class="block__label">Вартість доставки:</div>
+        <div class="block__info">{{deliveryPrice}} грн</div>
+      </div>
+    </div>
+
+    <div class="block_purchase">
+      <div>
+        <div class="block__label">Сума до сплати:</div>
+        <div class="block__info">{{totalPrice}} грн</div>
+      </div>
+
+      <div>
+        <div class="block__label">Нараховані бонуси:</div>
+        <div class="block__column">{{bonusAmount}} грн</div>
+      </div>
+    </div>
+
+    {{> divider}}
+    <a href="/purchase-change">
+      {{> button text="Змінити дані"}}</a>
+
+  </div>
+  {{/with}}
+</main>

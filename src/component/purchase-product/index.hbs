@@ -1,3 +1,5 @@
+{{!-- purchase-product --}}
+
 {{#with data}}
 <div class="product-card">
     <img src="{{img}}" alt="{{title}}" class="product-card__image">
@@ -7,7 +9,7 @@
     {{#each category}}
     <span class="product-card__category product-card__category--{{id}}">{{text}}</span>
     {{/each}}
-    <a href="/purchase-create?id={{id}}">
+    <a href="/purchase-product?id={{id}}">
         {{> button text="Купити зараз" price=price}}
     </a>
 </div>

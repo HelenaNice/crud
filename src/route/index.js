@@ -140,6 +140,7 @@ class Purchase {
 
     this.phone = data.phone
     this.email = data.email
+    this.address = data.address
 
     this.comment = data.comment || null
 
@@ -308,6 +309,17 @@ router.post('/purchase-create', function (req, res) {
     },
   })
 })
+// ***мои изменения
+
+// Формуємо номер замовлення у форматі "MM-DD-HH-mm" (місяць-день-година-хвилина)
+// const orderNumber = new Date()
+//   .toLocaleString('uk-UA')
+//   .replace(/[.,/: ]/g, '-')
+
+// Перенаправляємо користувача на сторінку /purchase-delivery з номером замовлення в URL
+// res.redirect(
+//   `/purchase-delivery?id=${purchase.id}&orderNumber=${orderNumber}`,
+// )
 
 // ======POST========
 router.post('/purchase-submit', function (req, res) {
@@ -323,6 +335,7 @@ router.post('/purchase-submit', function (req, res) {
     lastname,
     email,
     phone,
+    address,
     comment,
 
     promocode,
@@ -430,6 +443,7 @@ router.post('/purchase-submit', function (req, res) {
 
       promocode,
       comment,
+      address,
     },
     product,
   )
@@ -448,9 +462,105 @@ router.post('/purchase-submit', function (req, res) {
 // ===== GET =====
 router.get('/purchase-list', function (req, res) {
   res.render('purchase-list', {
-    style: 'purchase-list', // Здесь вы можете указать стили, если требуется
+    style: 'purchase-list',
     data: {
-      list: Purchase.getList(), // Замените Purchase на ваш класс с заказами
+      list: Purchase.getList(),
+    },
+  })
+})
+
+// test шаблона:
+router.get('/purchase-delivery', function (req, res) {
+  const id = Number(req.query.id)
+  const purchase = Purchase.getById(id)
+
+  if (!purchase) {
+    return res.render('alert', {
+      style: 'alert',
+      data: {
+        message: 'Помилка',
+        info: 'Замовлення не знайдено',
+        link: `/purchase-list`,
+      },
+    })
+  }
+
+  res.render('purchase-delivery', {
+    style: 'purchase-delivery',
+    data: {
+      id: purchase.id,
+      title: purchase.product.title,
+      firstname: purchase.firstname,
+      lastname: purchase.lastname,
+      phone: purchase.phone,
+      email: purchase.email,
+      address: purchase.address,
+      comment: purchase.comment,
+      totalPrice: purchase.totalPrice,
+      productPrice: purchase.productPrice,
+      deliveryPrice: purchase.deliveryPrice,
+      bonusAmount: purchase.bonusAmount,
+    },
+  })
+})
+
+// ===== GET для доставки и оплат=====
+
+// router.get('/purchase-delivery', function (req, res) {
+//     const id = Number(req.query.id) // получаем идентификатор из query параметра
+
+//     // Получаем данные о покупке по идентификатору
+//     const purchase = Purchase.getById(id)
+
+//     // Проверяем, есть ли такая покупка
+//     if (!purchase) {
+//       // Если покупка не найдена, выводим ошибку или перенаправляем на другую страницу
+//       return res.render('alert', {
+//         style: 'alert',
+//         data: {
+//           message: 'Помилка',
+//           info: 'Товар не знайдено',
+//           link: `/purchase-list`,
+//         },
+//       })
+//     }
+
+//     // Если покупка найдена, передаем данные в шаблон при рендеринге
+//     res.render('purchase-delivery', {
+//       style: 'purchase-delivery',
+//       data: {
+//         id: purchase.id,
+//         firstname: purchase.firstname,
+//         lastname: purchase.lastname,
+//         phone: purchase.phone,
+//         email: purchase.email,
+//         address: purchase.address,
+//         title: purchase.title,
+//         totalPrice: purchase.totalPrice,
+//         productPrice: purchase.productPrice,
+//         deliveryPrice: purchase.deliveryPrice,
+//         bonusAmount: purchase.bonusAmount,
+//         product: purchase.product,
+//       },
+//     })
+//   })
+
+// / ===== GET для зміни даних=====
+router.get('/purchase-change', function (req, res) {
+  const id = Number(req.query.id) // получаем идентификатор из query параметра
+
+  // Получаем данные о покупке по идентификатору
+  const purchase = Purchase.getById(id)
+
+  // передаем данные в шаблон при рендеринге
+  res.render('purchase-change', {
+    style: 'purchase-change',
+    data: {
+      id: 'xxxxxxxxx',
+      firstname: 'xxxxxxxxx',
+      lastname: 'xxxxxxxxx',
+      phone: 'xxxxxxxxx',
+      email: 'xxxxxxxxx',
     },
   })
 })

@@ -16,8 +16,7 @@ main {
   display: grid;
   margin-top: s.space(5);
   gap: s.space(2);
-  border: 1px solid grey;
-  padding: 10px;
+  // padding: 10px;
 }
 
 .purchase-item {
@@ -45,9 +44,6 @@ main {
   font-weight: 400;
   color: #808080;
   margin-bottom: s.space(3);
-}
-
-.purchase-item__value {
 }
 
 .purchase-item__total-price {

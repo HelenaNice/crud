@@ -1,0 +1,31 @@
+{{! purchase-change.hbs }}
+
+<main class="main">
+  <form method="GET" action="/purchase-submit?id={{id}}">
+    <div class="change_card">
+      {{> heading title="Зміна данних"}}
+
+      <div class="block">
+        <div class="block__label">ID замовленя:</div>
+        <div class="block__info">{{orderNumber}} ?????????</div>
+      </div>
+
+      <div class="person_data">
+
+        {{> field label="Ім'я" name="firstname"}}
+
+        {{> field label="Прізвище" name="lastname"}}
+      </div>
+
+      <div class="person_data">
+        {{> field label="Телефон" name="phone"}}
+
+        {{> field label="Пошта" name="email"}}
+      </div>
+      {{> divider}}
+      <a href="/purchase-list">
+        {{> button text="Зберегти дані"}}</a>
+
+    </div>
+  </form>
+</main>
