@@ -469,7 +469,7 @@ router.get('/purchase-list', function (req, res) {
   })
 })
 
-// test шаблона:
+// ===== GET =====test шаблона purchase-delivery
 router.get('/purchase-delivery', function (req, res) {
   const id = Number(req.query.id)
   const purchase = Purchase.getById(id)
@@ -504,64 +504,65 @@ router.get('/purchase-delivery', function (req, res) {
   })
 })
 
-// ===== GET для доставки и оплат=====
+// / ===== POST для зміни даних=====
+router.post('/purchase-update', function (req, res) {
+  const id = Number(req.query.id)
 
-// router.get('/purchase-delivery', function (req, res) {
-//     const id = Number(req.query.id) // получаем идентификатор из query параметра
-
-//     // Получаем данные о покупке по идентификатору
-//     const purchase = Purchase.getById(id)
-
-//     // Проверяем, есть ли такая покупка
-//     if (!purchase) {
-//       // Если покупка не найдена, выводим ошибку или перенаправляем на другую страницу
-//       return res.render('alert', {
-//         style: 'alert',
-//         data: {
-//           message: 'Помилка',
-//           info: 'Товар не знайдено',
-//           link: `/purchase-list`,
-//         },
-//       })
-//     }
-
-//     // Если покупка найдена, передаем данные в шаблон при рендеринге
-//     res.render('purchase-delivery', {
-//       style: 'purchase-delivery',
-//       data: {
-//         id: purchase.id,
-//         firstname: purchase.firstname,
-//         lastname: purchase.lastname,
-//         phone: purchase.phone,
-//         email: purchase.email,
-//         address: purchase.address,
-//         title: purchase.title,
-//         totalPrice: purchase.totalPrice,
-//         productPrice: purchase.productPrice,
-//         deliveryPrice: purchase.deliveryPrice,
-//         bonusAmount: purchase.bonusAmount,
-//         product: purchase.product,
-//       },
-//     })
-//   })
-
-// / ===== GET для зміни даних=====
-router.get('/purchase-change', function (req, res) {
-  const id = Number(req.query.id) // получаем идентификатор из query параметра
-
-  // Получаем данные о покупке по идентификатору
+  // Находим покупку по id
   const purchase = Purchase.getById(id)
 
-  // передаем данные в шаблон при рендеринге
-  res.render('purchase-change', {
-    style: 'purchase-change',
+  if (!purchase) {
+    return res.render('alert', {
+      style: 'alert',
+      data: {
+        message: 'Помилка',
+        info: 'Замовлення не знайдено',
+        link: '/purchase-list',
+      },
+    })
+  }
+
+  // Получаем новые значения из формы
+  const { firstname, lastname, phone, email } = req.body
+
+  // Обновляем данные покупки
+  if (firstname) purchase.firstname = firstname
+  if (lastname) purchase.lastname = lastname
+  if (phone) purchase.phone = phone
+  if (email) purchase.email = email
+
+  // Вернуть ответ пользователю
+  return res.render('alert', {
+    style: 'alert',
     data: {
-      id: 'xxxxxxxxx',
-      firstname: 'xxxxxxxxx',
-      lastname: 'xxxxxxxxx',
-      phone: 'xxxxxxxxx',
-      email: 'xxxxxxxxx',
+      message: 'Успішно',
+      info: 'Дані замовлення оновлено',
+      link: `/purchase-delivery?id=${id}`,
     },
+  })
+})
+// GET запрос для отображения страницы редактирования данных покупки
+router.get('/purchase-change', function (req, res) {
+  const id = Number(req.query.id)
+
+  // Находим покупку по id
+  const purchase = Purchase.getById(id)
+
+  if (!purchase) {
+    return res.render('alert', {
+      style: 'alert',
+      data: {
+        message: 'Помилка',
+        info: 'Замовлення не знайдено',
+        link: '/purchase-list',
+      },
+    })
+  }
+
+  // Отображаем шаблон purchase-change.hbs и передаем данные о покупке в шаблон
+  return res.render('purchase-change', {
+    style: 'purchase-change',
+    purchase,
   })
 })
 
