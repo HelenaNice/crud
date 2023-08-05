@@ -1,5 +1,23 @@
-const indexProductRouter = require('./index_product')
-const indexUserRouter = require('./index_user')
+// Підключаємо технологію express для back-end сервера
+const express = require('express')
+// Cтворюємо роутер - місце, куди ми підключаємо ендпоїнти
+const router = express.Router()
 
-app.use('/product', indexProductRouter) // Здесь используется маршрутизатор для продуктов
-app.use('/user', indexUserRouter) // Здесь используется маршрутизатор для пользователей
+// ================================================================
+
+// ================================================================
+// router.get Створює нам один ендпоїнт
+
+// ↙️ тут вводимо шлях (PATH) до сторінки
+router.get('/', function (req, res) {
+  res.render('index', {
+    style: 'index',
+    data: {},
+  })
+})
+
+// ================================================================
+
+// Підключаємо роутер до бек-енду
+module.exports = router
+g

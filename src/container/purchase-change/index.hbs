@@ -1,0 +1,32 @@
+{{! purchase-change.hbs }}
+
+<main class="main">
+  <form method="POST" action="/purchase-update?id={{purchase.id}}" class="form-card">
+    {{> heading title="Редагувати замовлення"}}
+
+    <div class="block">
+      <div>
+        <div class="block__label">ID замовленя:</div>
+        <div class="block__info">{{purchase.id}} </div>
+      </div>
+    </div>
+
+    <div class="person_data">
+
+      {{> field label="Ім'я" name="firstname" value=purchase.firstname}}
+
+      {{> field label="Прізвище" name="lastname" value=purchase.lastname}}
+    </div>
+
+    <div class="person_data">
+      {{> field label="Телефон" name="phone" value=purchase.phone}}
+
+      {{> field label="Пошта" name="email" value=purchase.email}}
+    </div>
+    {{> divider}}
+
+    {{> button text="Зберегти дані"}}</a>
+
+    </div>
+  </form>
+</main>
