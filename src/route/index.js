@@ -26,38 +26,52 @@ class Track {
   static getList() {
     return this.#list.reverse()
   }
+
+  // ++Статичний метод, щоб по идентифікатору повернути певний трек
+  static getById(id) {
+    return (
+      this.#list.find((track) => track.id === id) || null
+    )
+  }
 }
+
+//********** */ генерація рандомных картинок
+function getRandomImage(width, height) {
+  const randomNumber = Math.floor(Math.random() * 1000) // Випадкове число від 0 до 999
+  return `https://picsum.photos/${width}/${height}?random=${randomNumber}`
+}
+const randomImage = getRandomImage(100, 100)
+console.log(randomImage) // Виводить посилання на випадкове зображення розміром 100x100
+// ***************
 
 Track.create(
   'Інь Ян',
   'MONATIK і ROXOLANA',
-  'https://picsum.photos/100/100',
+  // 'https://picsum.photos/100/100',
+  getRandomImage(100, 100),
 )
 Track.create(
   'Baila Conmigo (Remix)',
   'Selena Gomez і Rauw Alejandro',
-  'https://picsum.photos/100/100',
+  // 'https://picsum.photos/100/100',
+  getRandomImage(100, 100),
 )
 Track.create(
   'Shameless ',
   'Camila Cabello ',
-  'https://picsum.photos/100/100',
+  getRandomImage(100, 100),
 )
 
-Track.create(
-  '11 PM',
-  'Maluma ',
-  'https://picsum.photos/100/100',
-)
+Track.create('11 PM', 'Maluma ', getRandomImage(100, 100))
 Track.create(
   'DÁKITI',
   'BAD BUNNY і JHAY ',
-  'https://picsum.photos/100/100',
+  getRandomImage(100, 100),
 )
 Track.create(
   'Інша любов',
   'Enleo',
-  'https://picsum.photos/100/100',
+  getRandomImage(100, 100),
 )
 
 console.log(Track.getList())
@@ -70,7 +84,7 @@ class Playlist {
     this.id = Math.floor(1000 + Math.random() * 9000) // генеруємо випадкове id
     this.name = name
     this.tracks = []
-    this.image = 'https://picsum.photos/100/100'
+    this.image = getRandomImage(100, 100)
   }
 
   // Статичний метод для створення обїєкту  Playlist і додавання його до списку #List
@@ -106,6 +120,15 @@ class Playlist {
     this.tracks = this.tracks.filter(
       (track) => track.id !== trackId,
     )
+  }
+
+  // +++власний метод обїекта плейлист добавить трек в плейлист
+  addTrackById(trackId) {
+    const trackToAdd = Track.getById(trackId)
+
+    if (trackToAdd) {
+      this.tracks.push(trackToAdd)
+    }
   }
   // знайти список плейлистів по имени. Берем плейлист, переводим в строчніе букві
   // щоб знайти назву незалежно від регістру
@@ -268,6 +291,69 @@ router.get('/spotify-search', function (req, res) {
     },
   })
 })
+// ======+++++========
+router.get('/spotify-track-add', function (req, res) {
+  const playlistId = Number(req.query.playlistId)
+  const trackId = Number(req.query.trackId)
+  const playlist = Playlist.getById(playlistId)
+
+  if (!playlist) {
+    return res.redirect('/spotify-choose')
+  }
+
+  playlist.addTrackById(trackId)
+
+  // После добавления трека перенаправляем обратно на страницу плейлиста
+  res.redirect(`/spotify-playlist?id=${playlistId}`)
+})
+// ======+++++=======
+// ...
+
+router.get('/spotify-playlist-add', function (req, res) {
+  const playlistId = Number(req.query.playlistId)
+
+  const playlist = Playlist.getById(playlistId)
+
+  if (!playlist) {
+    return res.redirect('/spotify-choose')
+  }
+
+  const allTracks = Track.getList()
+
+  res.render('spotify-playlist-add', {
+    style: 'spotify-playlist-add',
+    data: {
+      playlistId: playlist.id,
+      tracks: playlist.tracks,
+      name: playlist.name,
+    },
+  })
+})
+// додавання трека до плейліста  по його id
+router.post('/spotify-playlist-add', function (req, res) {
+  const playlistId = Number(req.query.playlistId)
+  const trackId = Number(req.query.trackId) // Используйте req.query.trackId
+
+  const playlist = Playlist.getById(playlistId)
+
+  if (!playlist) {
+    return res.render('alert', {
+      style: 'alert',
+      data: {
+        message: 'Помилка',
+        info: 'Такого плейлиста не знайдено',
+        link: '/',
+      },
+    })
+  }
+
+  playlist.addTrackById(trackId) // Добавляем трек к плейлисту
+
+  res.redirect(`/spotify-playlist?id=${playlistId}`)
+})
+
+// ...
+
 // ================================================================
 router.post('/spotify-search', function (req, res) {
   const value = req.body.value || ''
@@ -291,6 +377,13 @@ router.post('/spotify-search', function (req, res) {
 })
 
 // ================================================================
+router.get('/spotify-library', (req, res) => {
+  const playlists = Playlist.getList() // Отримайте список плейлистів з бекенда
+  res.render('spotify-library', {
+    style: 'spotify-library',
+    playlists,
+  })
+})
 // ================================================================
 // Підключаємо роутер до бек-енду
 module.exports = router
