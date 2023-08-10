@@ -1,0 +1,95 @@
+@use '../../lib/service.scss' as s;
+
+@use '../../lib/spotify.scss' as spotify;
+
+main {
+  background-color: #292929;
+  padding: s.space(2) s.space(8);
+  border-radius: 8px;
+
+  display: grid;
+  grid-template-columns: auto;
+
+  gap: s.space(8);
+  color: s.color(light);
+  font-size: 24px;
+}
+
+.header {
+  max-width: 720px;
+  display: flex;
+  justify-content: space-between;
+}
+.library-container {
+  max-width: 720px;
+  display: flex;
+  justify-content: space-between;
+  // align-items: center;
+  align-self: stretch;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 20px;
+}
+
+.playlist-card {
+  width: 345px;
+  height: 412px;
+  background-color: s.color(dark);
+  // background: linear-gradient(
+  //   135deg,
+  //   #4531f2 0%,
+  //   #cef4e7 100%
+  // );
+  border-radius: 10px;
+  overflow: hidden;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.playlist-image {
+  height: 345px;
+}
+
+.playlist-details {
+  padding: 10px;
+}
+
+.playlist-name {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.track-count {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px;
+}
+
+.library-title {
+  color: #fffefe;
+  font-size: 40px;
+  font-weight: 500;
+}
+
+.search-button {
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.create-button {
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  cursor: pointer;
+  margin-left: 10px;
+}

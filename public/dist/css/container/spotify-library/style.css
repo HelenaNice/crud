@@ -1,0 +1,170 @@
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.6;
+}
+a:hover {
+  opacity: 0.6;
+}
+
+.main {
+  background-color: #211212;
+  height: 100%;
+  color: #ddd;
+  display: flex;
+  justify-content: center;
+  padding: 24px 8px;
+}
+
+.main__content {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.title {
+  font-size: 24px;
+}
+
+.title--center {
+  text-align: center;
+}
+
+.track {
+  display: grid;
+  grid-template-columns: 92px 1fr 42px;
+  gap: 28px;
+  align-items: center;
+}
+.track__list {
+  display: grid;
+  gap: 28px;
+}
+.track__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+}
+.track__name {
+  font-size: 24px;
+  color: #ddd;
+}
+.track__author {
+  font-size: 16px;
+  color: #8d8d8d;
+}
+
+.playlist {
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  gap: 28px;
+  align-items: center;
+}
+.playlist__list {
+  display: grid;
+  gap: 28px;
+}
+.playlist__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+}
+.playlist__name {
+  font-size: 24px;
+  color: #ddd;
+}
+.playlist__amount {
+  font-size: 16px;
+  color: #8d8d8d;
+}
+
+main {
+  background-color: #292929;
+  padding: 8px 32px;
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: auto;
+  gap: 32px;
+  color: #ddd;
+  font-size: 24px;
+}
+
+.header {
+  max-width: 720px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.library-container {
+  max-width: 720px;
+  display: flex;
+  justify-content: space-between;
+  align-self: stretch;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 20px;
+}
+
+.playlist-card {
+  width: 345px;
+  height: 412px;
+  background-color: #211212;
+  border-radius: 10px;
+  overflow: hidden;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.playlist-image {
+  height: 345px;
+}
+
+.playlist-details {
+  padding: 10px;
+}
+
+.playlist-name {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.track-count {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px;
+}
+
+.library-title {
+  color: #fffefe;
+  font-size: 40px;
+  font-weight: 500;
+}
+
+.search-button {
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.create-button {
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+/*# sourceMappingURL=style.css.map */

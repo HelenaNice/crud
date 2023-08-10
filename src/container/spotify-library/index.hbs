@@ -1,0 +1,24 @@
+{{!-- spotify-library --}}
+
+<main>
+  <div class="header">
+    <div class="library-title">Моя бібліотека</div>
+    <div>
+      <a href="/spotify-search" class="search-button">
+        <img src="/svg/spotify-search.svg"></a>
+      <a href="/spotify-choose" class="create-button">
+        <img src="/svg/add_button.svg"></a>
+    </div>
+  </div>
+  <div class="library-container">
+    {{#each playlists}}
+    <div class="playlist-card">
+      <img class="playlist-image" src="{{image}}" alt="{{name}}">
+      <div class="playlist-details">
+        <div class="playlist-name">{{name}}</div>
+        <div class="track-count">{{trackCount}} треків</div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+</main>

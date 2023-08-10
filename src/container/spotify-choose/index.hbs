@@ -1,0 +1,27 @@
+{{!-- spotify-choose --}}
+
+<main class="main">
+  <div class="main__content">
+    <h1 class="title title--center">Створити</h1>
+    <ul class="choose"> {{!-- вибір та перехід до створення плейліста --}}
+      <a href="/spotify-create">
+        <li class="choose__item">
+          <img src="/svg/choose_1.svg" class="choose__image">
+          <div class="choose__content">
+            <strong class="title">Новий плейліст</strong>
+            <p class="choose__text">Створіть плейліст із піснями чи епізодами</p>
+          </div>
+        </li>
+      </a>
+      <a href="/spotify-create?isMix=true"> {{!-- умова та перехід до рандомного плейліста --}}
+        <li class="choose__item">
+          <img src="/svg/choose_2.svg" class="choose__image">
+          <div class="choose__content">
+            <strong class="title">Міх</strong>
+            <p class="choose__text">Створіть плейліст із піснями чи епізодами</p>
+          </div>
+        </li>
+      </a>
+    </ul>
+  </div>
+</main>
